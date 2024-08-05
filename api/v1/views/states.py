@@ -8,6 +8,7 @@ from flask import Flask, jsonify
 from models.state import State
 from models import storage
 
+
 @app_views.route('/states', methods=['GET'], strict_slashes=False)
 def get_states():
     """retrieve all the states"""

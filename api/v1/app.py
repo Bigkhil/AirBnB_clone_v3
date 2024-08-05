@@ -17,10 +17,12 @@ def tear_down(exception):
     """this method closes the database connection"""
     storage.close()
 
+
 @app.errorhandler(404)
 def not_found(error):
     """handler for error pages"""
     return make_response(jsonify({"error": "Not found"}), 404)
+
 
 if __name__ == "__main__":
     app.run(

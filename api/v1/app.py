@@ -5,7 +5,7 @@ this is app.py
 
 from os import getenv
 from models import storage
-from flask import Flask, jsonify
+from flask import Flask, jsonify, make_response
 from api.v1.views import app_views
 
 app = Flask(__name__)
@@ -17,6 +17,10 @@ def tear_down(exception):
     """this method closes the database connection"""
     storage.close()
 
+@app.errorhandler(404)
+def not_found(error):
+    """handler for error pages"""
+    return make_response(jsonify({"error": "Not found"}), 404)
 
 if __name__ == "__main__":
     app.run(
